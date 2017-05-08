@@ -4,6 +4,7 @@ module.exports = class Alphabet {
       label: letter,
       isPicked: false
     }));
+
     this.lettersByLabel = this.letters.reduce((dict, letter) => {
       dict[letter.label] = letter;
 

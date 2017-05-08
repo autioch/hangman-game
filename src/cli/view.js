@@ -2,6 +2,7 @@
 const chalk = require('chalk');
 const { plural, parseTimePlayed, parsePhrase, parseLettersStatus } = require('./utils');
 
+/* Console GUI. */
 module.exports = {
 
   renderLevel(game) {

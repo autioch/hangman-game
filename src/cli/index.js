@@ -1,38 +1,18 @@
 const HangmanGame = require('../core/game');
 const { words, letters, levelCount, attemptsCount } = require('../config');
-const { renderGameSummary, renderLevelSummary, renderStatus, renderWelcome, renderLevel } = require('./view');
-const { getInputFromKeyboard } = require('./utils');
+const { renderWelcome } = require('./view');
+const { roundLoop } = require('./roundLoop');
 
-const game = new HangmanGame(words, letters, levelCount, attemptsCount);
+/* Create new instance of the game. */
+const gameInstance = new HangmanGame(words, letters, levelCount, attemptsCount);
 
-renderWelcome(game);
-game.nextLevel();
+/* Render welcome screen with game settings. */
+renderWelcome(gameInstance);
 
-function getUserInput() {
-  getInputFromKeyboard(game.alphabet.getAvailableLetters(), (value) => {
-    game.pickLetter(value);
-    roundLoop(); // eslint-disable-line no-use-before-define
-  });
-}
+/* Setup first level.
+ * Starts the game timer. */
+gameInstance.nextLevel();
 
-function roundLoop() {
-  const { gameFinished, levelWon } = game.getState();
-
-  if (gameFinished) {
-    renderLevelSummary(game);
-    renderGameSummary(game);
-
-    return;
-  }
-
-  if (levelWon) {
-    renderLevelSummary(game);
-    game.nextLevel();
-    renderLevel(game);
-  }
-
-  renderStatus(game);
-  getUserInput();
-}
-
-roundLoop();
+/* Start the loop.
+ * It will continualy ask the player for input until game ends. */
+roundLoop(gameInstance);
