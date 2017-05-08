@@ -1,0 +1,19 @@
+{
+  "name": "hangman",
+  "version": "1.0.0",
+  "description": "Hangman game",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "hangman",
+    "game",
+    "fun"
+  ],
+  "author": "github.com/autioch",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-qb": "^1.0.0"
+  }
+}
