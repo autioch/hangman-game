@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Hangman game",
   "main": "index.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "scripts": {
     "test": "mocha --reporter=list src/**/*.spec.js",
     "test:watch": "mocha --reporter=min --watch src/**/*.spec.js & exit 0",
-    "config:build": "node src/config/serialize"
+    "buildConfig": "node tools/buildConfig"
   },
   "keywords": [
     "hangman",
@@ -15,7 +18,9 @@
   ],
   "author": "github.com/autioch",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "promptly": "^2.2.0"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-spies": "^0.7.1",

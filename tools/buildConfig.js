@@ -1,10 +1,11 @@
 /* eslint no-magic-numbers: 0 */
+/* eslint no-console: 0 */
 
-module.exports = {
+const config = {
   letters: 'abcdefghijklmnopqrstuvwxyz'.split(''),
   attemptsCount: 6,
   levelCount: 5,
-  vocabulary: [
+  words: [
     'bear',
     'beaver',
     'chimpanzee',
@@ -47,3 +48,13 @@ module.exports = {
     'zebra'
   ]
 };
+
+const output = require('path').join(__dirname, '..', 'src', 'config.json');
+
+require('fs').writeFile(output, JSON.stringify(config, null, '  '), 'utf-8', (err) => {
+  if (err) {
+    console.warn(err.message);
+  } else {
+    console.log('done');
+  }
+});

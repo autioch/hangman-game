@@ -1,1 +1,1 @@
-module.exports = require('./src/notImplemented');
+module.exports = require('./src');
