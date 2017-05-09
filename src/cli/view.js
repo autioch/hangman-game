@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 const chalk = require('chalk');
-const { plural, parseTimePlayed, parsePhrase, parseLettersStatus } = require('./utils');
+const { plural, parseTimePlayed, parsePhrase, parseLettersStatus, unshiftTextLine } = require('./utils');
 
 /* Console GUI. */
 module.exports = {
@@ -11,16 +11,20 @@ module.exports = {
   },
 
   renderWelcome(game) {
+    const welcomeLines = [
+      'Welcome to Hangman!',
+      `${plural('level', game.levelCount)} to win.`,
+      `You can make ${plural('mistake', game.attemptsCount)} on each level.`,
+      `All passwords are from animals category.`
+    ];
+
     console.log();
-    console.log(chalk.cyan('Welcome to Hangman!'));
-    console.log(chalk.cyan(`${plural('level', game.levelCount)} to win.`));
-    console.log(chalk.cyan(`You can make a mistake ${plural('time', game.attemptsCount)} on each level.`));
-    console.log(chalk.cyan(`All passwords are animals.`));
+    unshiftTextLine(welcomeLines).forEach((welcomeLine) => console.log(chalk.cyan(welcomeLine)));
   },
 
   renderStatus(game) {
     console.log();
-    console.log('Phrase:  ', chalk.gray(`${parsePhrase(game.phrase.letters, true)}`));
+    console.log('Word:    ', chalk.gray(`${parsePhrase(game.phrase.letters, true)}`));
     console.log('Chances: ', chalk.gray(`${game.gallows.getMissingParts()}`));
     console.log('Letters: ', chalk.gray(`${parseLettersStatus(game.alphabet.letters)}`));
   },
@@ -28,7 +32,7 @@ module.exports = {
   renderLevelSummary(game) {
     console.log();
     console.log(chalk.cyan('Level finished.'));
-    console.log(chalk.cyan('The phrase was ', parsePhrase(game.phrase.letters, false)));
+    console.log(chalk.cyan('The word was ', parsePhrase(game.phrase.letters, false)));
     if (game.gallows.getMissingParts() === game.gallows.partCount) {
       console.log(chalk.cyan('A perfect level! Nice!'));
     }

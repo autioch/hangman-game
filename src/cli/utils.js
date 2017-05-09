@@ -9,6 +9,12 @@ function concealCharacter(character) {
   return character.isRevealed ? character.label : '_';
 }
 
+function getTextLine(textArray) {
+  const maxLength = Math.max(...textArray.map((text) => text.length));
+
+  return new Array(maxLength + 1).join('-');
+}
+
 module.exports = {
 
   plural,
@@ -37,7 +43,7 @@ module.exports = {
   },
 
   parseLettersStatus(letters) {
-    return letters.map(({ isPicked, label }) => chalk[isPicked ? 'gray' : 'green'](label)).join(' ');
+    return letters.map(({ isPicked, label }) => chalk[isPicked ? 'gray' : 'green'](label.toUpperCase())).join(' ');
   },
 
   parseTimePlayed({ hours, minutes, seconds }) {
@@ -52,6 +58,14 @@ module.exports = {
     }
 
     return text;
+  },
+
+  getTextLine,
+
+  unshiftTextLine(textArray) {
+    textArray.unshift(getTextLine(textArray));
+
+    return textArray;
   }
 
 };

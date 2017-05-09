@@ -1,5 +1,10 @@
+const viableLetterCount = 3;
+
 module.exports = class Alphabet {
   constructor(letters) {
+    if (letters.length < viableLetterCount) {
+      console.warn(`Alphabet constructed using only ${letters.length} letters.`);
+    }
     this.letters = letters.map((letter) => ({
       label: letter,
       isPicked: false
