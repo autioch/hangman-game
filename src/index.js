@@ -1,1 +1,1 @@
-require('./cli');
+require('./react/index.jsx');
