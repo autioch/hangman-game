@@ -94,7 +94,7 @@ if (process.argv.indexOf('--watch') > -1) {
 
   webpackConfig.plugins.push(new LiveReloadPlugin({
     appendScriptTag: true,
-    ignore: /.(js|config|ico|woff)$/
+    ignore: /.(js|jsx|json|config|ico|woff)$/
   }));
 }
 

@@ -1,0 +1,23 @@
+.m-phrase-letter {
+  border: solid .25em #ccc;
+  background: lighten(#ccc, 10%);
+  color: #666;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: Arial;
+  margin: .25em;
+  padding: .25em .25em .1em;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 150ms, background-color 150ms, color 150ms;
+  flex: 0 0 auto;
+
+  &.is-revealed {
+    border-color: #0f0;
+    background-color: lighten(#0f0, 30%);
+    color: #000;
+  }
+}

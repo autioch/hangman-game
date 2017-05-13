@@ -64,4 +64,13 @@ module.exports = class HangmanGame {
 
     return containsLetter;
   }
+
+  reset() {
+    this.alphabet.reset();
+    this.dictionary.reset();
+    this.gallows.reset();
+    this.timer.reset();
+    this.phrase.setWord('');
+    this.currentLevel = 0;
+  }
 };

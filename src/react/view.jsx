@@ -2,17 +2,32 @@ const { h, Component } = require('preact');
 const configPath = require('config');
 const { fetchJson } = require('utils');
 const AlphabetView = require('./alphabet/view');
+const PhraseView = require('./phrase/view');
+const GameSummaryView = require('./gameSummary/view');
+const LevelSummaryView = require('./levelSummary/view');
+const TopbarViewView = require('./topbar/view');
+const GallowsView = require('./gallows/view');
 const HangmanGame = require('../core/game');
+
+require('./styles');
 
 module.exports = class AppView extends Component {
   constructor(props) {
     super(props);
+    this.chooseLetter = this.chooseLetter.bind(this);
+    this.restartGame = this.restartGame.bind(this);
+    this.nextLevel = this.nextLevel.bind(this);
     this.state = {
       letters: [],
       levelCount: 0,
-      loaded: false
+      loaded: false,
+      gameState: {},
+      phrase: [],
+      timeSpent: {},
+      parts: []
     };
     this.getConfig();
+    this.timerInterval = setInterval(this.updateTime.bind(this), 1000);
   }
 
   setupHangman(config) {
@@ -25,21 +40,73 @@ module.exports = class AppView extends Component {
     fetchJson(configPath)
       .then((config) => {
         this.setupHangman(config);
-        config.loaded = true;
         this.setState({
-          letters: this.game.alphabet.letters,
           levelCount: config.levelCount,
-          attemptsCount: this.game.attemptsCount,
-          loaded: true,
-          gameState: this.game.getState()
+          loaded: true
         });
+        this.game.nextLevel();
+        this.syncStateToGame();
       });
   }
 
+  chooseLetter(letter) {
+    this.game.pickLetter(letter);
+    this.syncStateToGame();
+  }
+
+  syncStateToGame() {
+    const gameState = this.game.getState();
+    const chances = this.game.gallows.getMissingParts();
+
+    const viewState = {
+      letters: this.game.alphabet.letters,
+      attemptsCount: this.game.attemptsCount,
+      gameState,
+      currentLevel: this.game.currentLevel,
+      chances,
+      phrase: this.game.phrase.letters,
+      parts: new Array(this.game.attemptsCount).fill(0).map((el, index) => index >= chances)
+    };
+
+    this.setState(viewState);
+  }
+
+  updateTime() {
+    this.setState({
+      timeSpent: this.game.timer.getCurrentTime()
+    });
+  }
+
+  nextLevel() {
+    this.game.nextLevel();
+    this.syncStateToGame();
+  }
+
+  restartGame() {
+    this.game.reset();
+    this.game.nextLevel();
+    this.syncStateToGame();
+  }
+
   render() {
+    const { gameState, timeSpent } = this.state;
+    let summaryView = '';
+
+    if (gameState.gameFinished) {
+      summaryView = <GameSummaryView gameState={gameState} timeSpent={timeSpent} restartGame={this.restartGame} phrase={this.game.phrase.word} />;
+    }
+
+    if (gameState.levelFinished && !gameState.gameFinished) {
+      summaryView = <LevelSummaryView nextLevel={this.nextLevel} phrase={this.game.phrase.word} />;
+    }
+
     return (
       <div className="m-app">
-        <AlphabetView letters={this.state.letters} />
+        <TopbarViewView currentLevel={this.state.currentLevel} chances={this.state.chances} timeSpent={timeSpent}/>
+        <GallowsView parts={this.state.parts} />
+        <PhraseView letters={this.state.phrase}/>
+        <AlphabetView letters={this.state.letters} onChoose={this.chooseLetter}/>
+        {summaryView}
       </div>
     );
   }

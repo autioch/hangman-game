@@ -1,5 +1,11 @@
 const { h } = require('preact');
 
-module.exports = function LetterView({ letter }) {
-  return (<div className="m-letter">{letter.label}</div>);
+require('./styles');
+
+module.exports = function AlphabetLetterView({ letter, onChoose }) {
+  return (
+    <div className={`m-alphabet-letter${letter.isPicked ? ' is-picked' : ''}`} onclick={() => onChoose(letter.label)}>
+      {letter.label}
+    </div>
+  );
 };

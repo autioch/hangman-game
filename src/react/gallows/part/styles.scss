@@ -1,0 +1,11 @@
+.m-gallows__part {
+  width: 25%;
+  max-height: 5em;
+  background: #0f0;
+  flex: 1 1 auto;
+  margin: 1em;
+
+  &.is-complete {
+    background: #f00;
+  }
+}

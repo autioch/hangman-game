@@ -1,0 +1,25 @@
+.m-alphabet-letter {
+  border: solid .25em #421;
+  background: lighten(#421, 20%);
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: Arial;
+  margin: .25em;
+  padding: .25em .25em .1em;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 150ms, background-color 150ms, color 150ms;
+  flex: 0 0 auto;
+  cursor: pointer;
+
+  &.is-picked {
+    border-color: #ccc;
+    background-color: lighten(#ccc, 10%);
+    color: #999;
+    cursor: default;
+  }
+}
