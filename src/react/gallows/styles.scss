@@ -1,8 +1,20 @@
 .m-gallows {
   flex-grow: 1;
-  background: #def;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding: 4em;
+}
+
+.hangman-part {
+  fill: #eee;
+
+  &.is-complete {
+    fill: #666;
+  }
+}
+
+.m-gallows__svg {
+  width: 100%;
 }
