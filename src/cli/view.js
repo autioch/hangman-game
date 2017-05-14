@@ -10,12 +10,12 @@ module.exports = {
     console.log(chalk.cyan(`Level:   ${game.currentLevel}`));
   },
 
-  renderWelcome(game) {
+  renderWelcome(game, category) {
     const welcomeLines = [
       'Welcome to Hangman!',
-      `${plural('level', game.levelCount)} to win.`,
-      `You can make ${plural('mistake', game.attemptsCount)} on each level.`,
-      `All passwords are from animals category.`
+      `You have ${plural('level', game.levelCount)} to go.`,
+      `In each level, You have ${plural('attemp', game.attemptsCount)} to guess a letter.`,
+      `All words are from '${category}' category.`
     ];
 
     console.log();

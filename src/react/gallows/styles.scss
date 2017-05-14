@@ -1,19 +1,16 @@
 .m-gallows {
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.hangman-part {
-  fill: #eee;
-
-  &.is-complete {
-    fill: #666;
-  }
 }
 
 .m-gallows__svg {
   width: 100%;
+
+  .hangman-part {
+    fill: #eee;
+
+    &.is-complete {
+      fill: #666;
+    }
+  }
 }

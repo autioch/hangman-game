@@ -1,20 +1,17 @@
+@import 'react/theme';
+
 .m-topbar {
-  border-bottom: solid .25em #421;
-  background: lighten(#421, 20%);
-  color: #fff;
-  padding: 1em;
+  border-bottom: $box__border;
+  background: $box__background;
+  color: $box__font;
+  padding: $box__padding;
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
-  margin-bottom: 2em;
   flex: 0 0 auto;
 
-  // @media (min-width: 660px) and (min-height: 400px) {
-  //   margin-bottom: 4em;
-  // }
-
-  @media (min-width: 660px) {
-    border-left: solid .25em #421;
-    border-right: solid .25em #421;
+  @media (min-width: 960px) {
+    border-left: $box__border;
+    border-right: $box__border;
   }
 }

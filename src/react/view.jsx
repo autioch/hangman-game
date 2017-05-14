@@ -1,9 +1,10 @@
 const { h, Component } = require('preact');
 const configPath = require('config');
+const answersPath = require('answers');
 const { fetchJson } = require('utils');
 const AlphabetView = require('./alphabet/view');
 const GallowsView = require('./gallows/view');
-const { GameSummaryView, LevelSummaryView } = require('./message');
+const { GameSummaryView, LevelSummaryView, LandingView } = require('./message');
 const PhraseView = require('./phrase/view');
 const TopbarViewView = require('./topbar/view');
 const HangmanGame = require('core/game');
@@ -16,21 +17,28 @@ module.exports = class AppView extends Component {
     this.chooseLetter = this.chooseLetter.bind(this);
     this.restartGame = this.restartGame.bind(this);
     this.nextLevel = this.nextLevel.bind(this);
+    this.startGame = this.startGame.bind(this);
     this.state = {
       letters: [],
       levelCount: 0,
-      loaded: false,
+      configLoaded: false,
+      answersLoaded: false,
       gameState: {},
       phrase: [],
       timeSpent: {},
-      parts: []
+      parts: [],
+      started: false,
+      category: '',
+      answers: [],
+      config: {}
     };
     this.getConfig();
-    this.timerInterval = setInterval(this.updateTime.bind(this), 1000);
+    this.getAnswers();
   }
 
-  setupHangman(config) {
-    const { words, letters, levelCount, attemptsCount } = config;
+  setupHangman() {
+    const { letters, levelCount, attemptsCount } = this.state.config;
+    const words = this.state.answers;
 
     this.game = new HangmanGame(words, letters, levelCount, attemptsCount);
   }
@@ -38,14 +46,34 @@ module.exports = class AppView extends Component {
   getConfig() {
     fetchJson(configPath)
       .then((config) => {
-        this.setupHangman(config);
         this.setState({
-          levelCount: config.levelCount,
-          loaded: true
+          configLoaded: true,
+          config
         });
-        this.game.nextLevel();
-        this.syncStateToGame();
+        this.initializeGame();
       });
+  }
+
+  getAnswers() {
+    fetchJson(answersPath)
+      .then((answers) => {
+        this.setState({
+          answersLoaded: true,
+          answers
+        });
+        this.initializeGame();
+      });
+  }
+
+  initializeGame() {
+    if (this.state.answersLoaded && this.state.configLoaded) {
+      this.setupHangman();
+      this.setState({
+        levelCount: this.state.levelCount,
+        category: this.state.category
+      });
+      this.syncStateToGame();
+    }
   }
 
   chooseLetter(letter) {
@@ -70,6 +98,16 @@ module.exports = class AppView extends Component {
     this.setState(viewState);
   }
 
+  startGame() {
+    this.game.nextLevel();
+    this.setState({
+      started: true
+    });
+    this.syncStateToGame();
+    this.updateTime();
+    this.timerInterval = setInterval(this.updateTime.bind(this), 1000);
+  }
+
   updateTime() {
     this.setState({
       timeSpent: this.game.timer.getCurrentTime()
@@ -88,21 +126,21 @@ module.exports = class AppView extends Component {
   }
 
   render() {
-    const { gameState, timeSpent } = this.state;
+    const { gameState, timeSpent, started, category } = this.state;
     let summaryView = '';
 
-    if (gameState.gameFinished) {
+    if (!started && this.game) {
+      summaryView = <LandingView levelCount={this.game.levelCount} attemptsCount={this.game.attemptsCount} startGame={this.startGame} category={category}/>;
+    } else if (gameState.gameFinished) {
       summaryView = <GameSummaryView gameState={gameState} timeSpent={timeSpent} restartGame={this.restartGame} phrase={this.game.phrase.word} />;
-    }
-
-    if (gameState.levelFinished && !gameState.gameFinished) {
+    } else if (gameState.levelFinished && !gameState.gameFinished) {
       summaryView = <LevelSummaryView nextLevel={this.nextLevel} phrase={this.game.phrase.word} />;
     }
 
     return (
       <div className="m-app">
         <TopbarViewView currentLevel={this.state.currentLevel} chances={this.state.chances} timeSpent={timeSpent}/>
-        <div className="m-app__level">
+        <div className="m-level">
           <GallowsView parts={this.state.parts} />
           <PhraseView letters={this.state.phrase}/>
         </div>

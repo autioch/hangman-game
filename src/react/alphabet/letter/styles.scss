@@ -1,25 +1,28 @@
+@import 'react/theme';
+
 .m-alphabet-letter {
-  border: solid .25em #421;
-  background: lighten(#421, 20%);
-  color: #fff;
+  @include c-square(2em);
+  border: $box__border;
+  background: $box__background;
+  color: $box__font;
   text-transform: uppercase;
-  text-align: center;
-  font-family: Arial;
   margin: .25em;
-  padding: .25em .25em .1em;
-  width: 1.5em;
-  height: 1.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: border-color 150ms, background-color 150ms, color 150ms;
-  flex: 0 0 auto;
-  cursor: pointer;
+
+  &:not(.is-picked) {
+    cursor: pointer;
+
+    @media (hover: hover) {
+      &:hover {
+        background: $box__background--hover;
+        border: $box__border--hover;
+      }
+    }
+  }
 
   &.is-picked {
-    border-color: #ccc;
-    background-color: lighten(#ccc, 10%);
-    color: #999;
-    cursor: default;
+    border: $box__border--disabled;
+    background-color: $box__background--disabled;
+    color: $box__font--disabled;
   }
 }

@@ -6,6 +6,7 @@ body,
   border: 0;
   width: 100%;
   height: 100%;
+  user-select: none;
 }
 
 html {
@@ -16,8 +17,9 @@ html {
     font-size: 14px;
   }
 
-  @media (min-width: 660px) {
-    width: 660px;
+  @media (min-width: 960px) {
+    width: 960px;
+    font-size: 16px;
     margin: 0 auto;
   }
 }
@@ -25,15 +27,17 @@ html {
 .m-app {
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
-  justify-content: space-between;
 }
 
-.m-app__level {
-  flex: 0 1 auto;
+.m-level {
+  flex-grow: 1;
   display: flex;
+  flex-direction: column;
+  padding: 2em 0;
   align-items: stretch;
-  justify-content: space-between;
-  // flex-wrap: no-wrap;
+
+  @media (max-width: 960px) and (orientation: landscape) {
+    flex-direction: row;
+    align-items: stretch;
+  }
 }

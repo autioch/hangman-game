@@ -1,5 +1,6 @@
 const HangmanGame = require('../core/game');
-const { words, letters, levelCount, attemptsCount } = require('../config');
+const { letters, levelCount, attemptsCount, category } = require('../config');
+const words = require('../answers');
 const { renderWelcome } = require('./view');
 const roundLoop = require('./roundLoop');
 
@@ -7,7 +8,7 @@ const roundLoop = require('./roundLoop');
 const gameInstance = new HangmanGame(words, letters, levelCount, attemptsCount);
 
 /* Render welcome screen with game settings. */
-renderWelcome(gameInstance);
+renderWelcome(gameInstance, category);
 
 /* Setup first level.
  * Starts the game timer. */
