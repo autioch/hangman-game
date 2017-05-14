@@ -1,1 +1,0 @@
-require('./react/index.jsx');

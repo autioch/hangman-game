@@ -2,31 +2,22 @@ const { h } = require('preact');
 const MessageView = require('../base/view');
 const { plural } = require('utils');
 
-const winMessage = 'You win the game!';
-const loseMessage = 'Game over!';
-
 function parseTimePlayed({ hours, minutes, seconds }) {
-  let text = plural('second', seconds);
-
-  if (hours > 0 || minutes > 0) {
-    text = `${plural('minute', minutes)} and ${text}`;
-  }
-
-  if (hours > 0) {
-    text = `${plural('hour', hours)}, ${text}`;
-  }
-
-  return text;
+  return [
+    hours > 0 ? `${plural('hour', hours)},` : '',
+    hours > 0 || minutes > 0 ? `${plural('minute', minutes)} and` : '',
+    plural('second', seconds)
+  ].join(' ');
 }
 
-module.exports = function GameSummaryView({ gameState, timeSpent, restartGame, phrase }) {
+module.exports = function GameSummaryView({ gameWon, timeSpent, action, phrase }) {
   return <MessageView
-    header={gameState.gameWon ? winMessage : loseMessage}
+    header={gameWon ? 'You win!' : 'Game over!'}
     paragraphs={[
       `The phrase was ${phrase}.`,
       `You played for ${parseTimePlayed(timeSpent)}.`
     ]}
     actionLabel="Play again"
-    action={restartGame}
+    action={action}
   />;
 };

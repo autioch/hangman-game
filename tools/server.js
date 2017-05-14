@@ -28,7 +28,7 @@ function sendError(response, code, filename) {
 }
 
 /* Starts simple server for serving files during development. */
-module.exports = function server(rootFolder, port = 8081) {
+module.exports = function server(rootFolder, port = 8080) {
   http
     .createServer(function handleRequest(request, response) {
       const uri = url.parse(request.url).pathname;

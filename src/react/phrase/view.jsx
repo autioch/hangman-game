@@ -5,17 +5,12 @@ const PlaceholderView = require('./placeholder/view');
 require('./styles.scss');
 
 module.exports = function PhraseView({ letters }) {
-  let content;
-
-  if (letters.length > 0) {
-    content = letters.map((letter) => <LetterView key={letter.index} letter={letter}/>);
-  } else {
-    content = <PlaceholderView />;
-  }
+  const placeholder = letters.length === 0 ? <PlaceholderView /> : '';
 
   return (
     <div className="m-phrase">
-      {content}
+      {letters.map((letter) => <LetterView key={letter.index} letter={letter}/>)}
+      {placeholder}
     </div>
   );
 };

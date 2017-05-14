@@ -2,8 +2,8 @@ const { h } = require('preact');
 
 require('./styles');
 
-module.exports = function PhrasePlaceholderView() {
+module.exports = function PlaceholderView() {
   return (
-    <div className="m-phrase-placeholder"> </div>
+    <div className="m-phrase-placeholder"></div>
   );
 };

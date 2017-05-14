@@ -15,7 +15,7 @@ const assets = 'files/';
 
 const webpackConfig = {
   entry: {
-    main: path.join(sourcePath, 'index')
+    main: path.join(sourcePath, 'react', 'index')
   },
   output: {
     path: buildFolder,
@@ -65,7 +65,7 @@ const webpackConfig = {
   plugins: [
     new ExtractTextPlugin(`${assets}[name]${nameSuffix}.css`, {}),
     new HtmlWebpackPlugin({
-      template: path.join(sourcePath, 'index.html'),
+      template: path.join(sourcePath, 'react', 'index.html'),
       filename: 'index.html',
       allChunks: true
     }),
@@ -89,13 +89,14 @@ const webpackConfig = {
 };
 
 if (process.argv.indexOf('--watch') > -1) {
-  require('./server')(buildFolder);
-  const LiveReloadPlugin = require('webpack-livereload-plugin');
+  require('./server')(buildFolder, 8082);
 
-  webpackConfig.plugins.push(new LiveReloadPlugin({
-    appendScriptTag: true,
-    ignore: /.(js|jsx|json|config|ico|woff)$/
-  }));
+  // const LiveReloadPlugin = require('webpack-livereload-plugin');
+  //
+  // webpackConfig.plugins.push(new LiveReloadPlugin({
+  //   appendScriptTag: true,
+  //   ignore: /.(js|jsx|json|config|ico|woff)$/
+  // }));
 }
 
 if (isProduction) {

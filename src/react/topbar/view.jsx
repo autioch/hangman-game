@@ -5,15 +5,12 @@ const TimeSpentView = require('./time/view');
 
 require('./styles.scss');
 
-module.exports = function TopbarView({ currentLevel, chances, timeSpent }) {
-  const chancesView = chances > 0 ? <ChanceView chances={chances} /> : '';
-  const levelView = currentLevel > 0 ? <LevelView currentLevel={currentLevel} /> : '';
-
+module.exports = function TopbarView({ currentLevel, chances, gameTimer }) {
   return (
     <div className="m-topbar">
-      {chancesView}
-      {levelView}
-      <TimeSpentView timeSpent={timeSpent} />
+      <ChanceView chances={chances} />
+      <LevelView currentLevel={currentLevel} />
+      <TimeSpentView gameTimer={gameTimer} />
     </div>
   );
 };

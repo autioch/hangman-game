@@ -2,12 +2,12 @@ const { h } = require('preact');
 
 require('./styles');
 
-module.exports = function PhraseLetterView({ letter }) {
-  const isRevealed = letter.isRevealed || (letter.label === ' ');
+module.exports = function LetterView({ letter: { label, isRevealed } }) {
+  const reveal = isRevealed || (label === ' ');
 
   return (
-    <div className={`m-phrase-letter${isRevealed ? ' is-revealed' : ''}`}>
-      {isRevealed ? letter.label : '?'}
+    <div className={`m-phrase-letter${reveal ? ' is-revealed' : ''}`}>
+      {reveal ? label : '?'}
     </div>
   );
 };

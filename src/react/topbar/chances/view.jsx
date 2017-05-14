@@ -1,7 +1,12 @@
 const { h } = require('preact');
+const { plural } = require('utils');
 
 require('./styles');
 
-module.exports = function TopbarViewChanceView({ chances }) {
-  return (<div className="m-summary__chances">{chances} chance{chances > 1 ? 's' : ''}</div>);
+module.exports = function ChancesView({ chances }) {
+  return (
+    <div className="m-summary__chances">
+      {chances > 0 ? plural('chance', chances) : ''}
+    </div>
+  );
 };

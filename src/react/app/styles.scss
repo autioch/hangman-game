@@ -1,0 +1,20 @@
+.m-app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.m-level {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+
+  @media (orientation: portrait) {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    padding: 2em 1em;
+  }
+}

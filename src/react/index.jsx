@@ -1,8 +1,9 @@
 const { render, h } = require('preact');
 const { captureError } = require('utils');
+const AppView = require('./app/view');
 
-const AppView = require('./view.jsx');
+require('./styles');
 
-window.onerror = captureError;
+// window.onerror = captureError;
 
 render(<AppView />, document.body);

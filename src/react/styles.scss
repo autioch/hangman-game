@@ -1,12 +1,10 @@
 html,
-body,
-.m-app {
+body {
   margin: 0;
   padding: 0;
   border: 0;
   width: 100%;
   height: 100%;
-  user-select: none;
 }
 
 html {
@@ -21,23 +19,5 @@ html {
     width: 960px;
     font-size: 16px;
     margin: 0 auto;
-  }
-}
-
-.m-app {
-  display: flex;
-  flex-direction: column;
-}
-
-.m-level {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  padding: 0 1em;
-
-  @media (orientation: portrait) {
-    flex-direction: column-reverse;
-    align-items: stretch;
-    padding: 2em 1em;
   }
 }
