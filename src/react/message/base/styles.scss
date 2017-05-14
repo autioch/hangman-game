@@ -28,7 +28,7 @@
   margin: 2em;
 }
 
-.c-message__line {
+.c-message__paragraph {
   margin: .5em 0;
 }
 
@@ -42,7 +42,7 @@
   color: $box__font;
   border-radius: .15em;
   display: inline-block;
-  padding: .35em 1em .4em;
+  padding: .35em 1em;
   outline: none;
   cursor: pointer;
   border: solid 1px $buttton__background;

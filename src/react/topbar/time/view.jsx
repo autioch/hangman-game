@@ -4,7 +4,7 @@ require('./styles');
 
 function parseTimePlayed({ hours, minutes, seconds }) {
   if (!(seconds || minutes || hours)) {
-    return '';
+    return '0s';
   }
   let text = `${seconds}s`;
 

@@ -7,11 +7,12 @@ require('./styles.scss');
 
 module.exports = function TopbarView({ currentLevel, chances, timeSpent }) {
   const chancesView = chances > 0 ? <ChanceView chances={chances} /> : '';
+  const levelView = currentLevel > 0 ? <LevelView currentLevel={currentLevel} /> : '';
 
   return (
     <div className="m-topbar">
       {chancesView}
-      <LevelView currentLevel={currentLevel} />
+      {levelView}
       <TimeSpentView timeSpent={timeSpent} />
     </div>
   );

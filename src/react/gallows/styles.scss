@@ -1,6 +1,13 @@
 .m-gallows {
   flex: 1 1 auto;
   display: flex;
+  align-self: stretch;
+  padding: 1em 0;
+
+  @media (orientation: portrait) {
+    flex: 1 1 auto;
+    margin-bottom: 2em;
+  }
 }
 
 .m-gallows__svg {

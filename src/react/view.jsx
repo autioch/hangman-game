@@ -126,22 +126,28 @@ module.exports = class AppView extends Component {
   }
 
   render() {
-    const { gameState, timeSpent, started, category } = this.state;
+    const { gameState, timeSpent, started, config } = this.state;
     let summaryView = '';
 
     if (!started && this.game) {
-      summaryView = <LandingView levelCount={this.game.levelCount} attemptsCount={this.game.attemptsCount} startGame={this.startGame} category={category}/>;
+      summaryView = <LandingView levelCount={this.game.levelCount} attemptsCount={this.game.attemptsCount} startGame={this.startGame} category={config.category}/>;
     } else if (gameState.gameFinished) {
       summaryView = <GameSummaryView gameState={gameState} timeSpent={timeSpent} restartGame={this.restartGame} phrase={this.game.phrase.word} />;
     } else if (gameState.levelFinished && !gameState.gameFinished) {
       summaryView = <LevelSummaryView nextLevel={this.nextLevel} phrase={this.game.phrase.word} />;
     }
 
+    let gallows = '';
+
+    if (started) {
+      gallows = <GallowsView parts={this.state.parts} />;
+    }
+
     return (
       <div className="m-app">
         <TopbarViewView currentLevel={this.state.currentLevel} chances={this.state.chances} timeSpent={timeSpent}/>
         <div className="m-level">
-          <GallowsView parts={this.state.parts} />
+          {gallows}
           <PhraseView letters={this.state.phrase}/>
         </div>
         <AlphabetView letters={this.state.letters} onChoose={this.chooseLetter}/>
