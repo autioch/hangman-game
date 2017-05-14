@@ -2,9 +2,10 @@
 /* eslint no-console: 0 */
 
 const config = {
-  letters: 'abcdefghijklmnopqrstuvwxyz'.split(''),
   attemptsCount: 6,
   levelCount: 5,
+  category: 'animals',
+  letters: 'abcdefghijklmnopqrstuvwxyz'.split(''),
   words: [
     'bear',
     'beaver',

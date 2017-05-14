@@ -16,7 +16,7 @@ html {
     font-size: 14px;
   }
 
-  @media (min-width: 660px){
+  @media (min-width: 660px) {
     width: 660px;
     margin: 0 auto;
   }
@@ -28,4 +28,12 @@ html {
   // align-items: center;
   // justify-content: center;
   justify-content: space-between;
+}
+
+.m-app__level {
+  flex: 0 1 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  // flex-wrap: no-wrap;
 }

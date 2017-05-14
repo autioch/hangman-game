@@ -1,9 +1,6 @@
 const chalk = require('chalk');
 const promptly = require('promptly');
-
-function plural(label, amount) {
-  return `${amount} ${label}${amount > 1 ? 's' : ''}`;
-}
+const { plural } = require('../utils');
 
 function concealCharacter(character) {
   return character.isRevealed ? character.label : '_';

@@ -2,12 +2,11 @@ const { h, Component } = require('preact');
 const configPath = require('config');
 const { fetchJson } = require('utils');
 const AlphabetView = require('./alphabet/view');
-const PhraseView = require('./phrase/view');
-const GameSummaryView = require('./gameSummary/view');
-const LevelSummaryView = require('./levelSummary/view');
-const TopbarViewView = require('./topbar/view');
 const GallowsView = require('./gallows/view');
-const HangmanGame = require('../core/game');
+const { GameSummaryView, LevelSummaryView } = require('./message');
+const PhraseView = require('./phrase/view');
+const TopbarViewView = require('./topbar/view');
+const HangmanGame = require('core/game');
 
 require('./styles');
 
@@ -103,8 +102,10 @@ module.exports = class AppView extends Component {
     return (
       <div className="m-app">
         <TopbarViewView currentLevel={this.state.currentLevel} chances={this.state.chances} timeSpent={timeSpent}/>
-        <GallowsView parts={this.state.parts} />
-        <PhraseView letters={this.state.phrase}/>
+        <div className="m-app__level">
+          <GallowsView parts={this.state.parts} />
+          <PhraseView letters={this.state.phrase}/>
+        </div>
         <AlphabetView letters={this.state.letters} onChoose={this.chooseLetter}/>
         {summaryView}
       </div>

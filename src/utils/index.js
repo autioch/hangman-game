@@ -1,3 +1,4 @@
 module.exports = {
-  fetchJson: require('./fetchJson')
+  fetchJson: require('./fetchJson'),
+  plural: require('./plural')
 };

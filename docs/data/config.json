@@ -1,4 +1,7 @@
 {
+  "attemptsCount": 6,
+  "levelCount": 1,
+  "category": "animals",
   "letters": [
     "a",
     "b",
@@ -27,8 +30,6 @@
     "y",
     "z"
   ],
-  "attemptsCount": 6,
-  "levelCount": 5,
   "words": [
     "bear",
     "beaver",
@@ -50,6 +51,7 @@
     "lizard",
     "monkey",
     "mouse",
+    "neck",
     "orangutan",
     "panther",
     "parrot",
