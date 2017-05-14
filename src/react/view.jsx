@@ -147,8 +147,8 @@ module.exports = class AppView extends Component {
       <div className="m-app">
         <TopbarViewView currentLevel={this.state.currentLevel} chances={this.state.chances} timeSpent={timeSpent}/>
         <div className="m-level">
-          {gallows}
           <PhraseView letters={this.state.phrase}/>
+          {gallows}
         </div>
         <AlphabetView letters={this.state.letters} onChoose={this.chooseLetter}/>
         {summaryView}

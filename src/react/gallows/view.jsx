@@ -1,11 +1,27 @@
 const { h } = require('preact');
 
+const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
 require('./styles');
 
+const svgWidth = 142;
+const svgHeight = 222;
+
 module.exports = function LeveLSummaryView({ parts }) {
+  const firefoxFix = isFirefox ? {
+    width: svgHeight,
+    height: svgHeight
+  } : {};
+
   return (
     <div className="m-gallows">
-      <svg className="m-gallows__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 142 222" version="1.1">
+      <svg
+        className={`m-gallows__svg ${isFirefox ? 'is-firefox' : ''}`}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+        version="1.1"
+        {...firefoxFix}
+      >
         <g fill="#ddd">
           <path class={`hangman-part ${parts[0] ? 'is-complete' : ''}`} d="m28,135 -20,55 -5,-1.5 20,-55z" />
           <path class={`hangman-part ${parts[1] ? 'is-complete' : ''}`} d="m23,135 20,55 5,-1.5 -20,-55z" />

@@ -13,7 +13,7 @@ html {
   font-family: Verdana;
   font-size: 12px;
 
-  @media (min-width: 400px){
+  @media (min-width: 400px) {
     font-size: 14px;
   }
 
@@ -36,7 +36,7 @@ html {
   padding: 0 1em;
 
   @media (orientation: portrait) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: stretch;
     padding: 2em 1em;
   }

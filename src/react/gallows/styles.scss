@@ -13,6 +13,20 @@
 .m-gallows__svg {
   width: 100%;
 
+  &.is-firefox {
+    margin: auto;
+
+    @media (orientation: landscape) {
+      height: 100%;
+    }
+
+
+    @media (orientation: portrait) {
+      height: 100%;
+      width: auto;
+    }
+  }
+
   .hangman-part {
     fill: #eee;
 
