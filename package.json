@@ -9,7 +9,6 @@
   "scripts": {
     "test": "mocha --reporter=list src/**/*.spec.js",
     "test:watch": "mocha --reporter=min --watch src/**/*.spec.js & exit 0",
-    "buildConfig": "node tools/buildConfig",
     "react:watch": "webpack --config tools/react.webpack.config.js --hide-modules --watch",
     "react:build": "webpack --config tools/react.webpack.config.js --hide-modules -p"
   },
