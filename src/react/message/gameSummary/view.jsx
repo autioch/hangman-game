@@ -10,12 +10,12 @@ function parseTimePlayed({ hours, minutes, seconds }) {
   ].join(' ');
 }
 
-module.exports = function GameSummaryView({ gameWon, timeSpent, action, phrase }) {
+module.exports = function GameSummaryView({ gameWon, timeSpent, action, word }) {
   return <MessageView
     header={gameWon ? 'You win!' : 'Game over!'}
     paragraphs={[
-      `The phrase was ${phrase}.`,
-      `You played for ${parseTimePlayed(timeSpent)}.`
+      `The word was ${word}.`,
+      `You have played for ${parseTimePlayed(timeSpent)}.`
     ]}
     actionLabel="Play again"
     action={action}

@@ -3,7 +3,9 @@ const { h } = require('preact');
 
 require('./styles');
 
-module.exports = function PersonView({ parts }) {
+module.exports = function PersonView({ chances, attemptsCount }) {
+  const parts = new Array(attemptsCount).fill(0).map((el, index) => index >= chances);
+
   return (
       <svg className="m-person" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 190" version="1.1" >
         <path className={`m-person__part ${parts[0] ? 'is-complete' : ''}`} d="m28,124 -20,55 -5,-1.5 20,-55z" />

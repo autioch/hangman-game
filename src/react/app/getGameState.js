@@ -1,18 +1,13 @@
 module.exports = function getGameState(game) {
-  const { gallows, alphabet, attemptsCount, currentLevel, levelCount, phrase, timer } = game;
   const gameState = game.getState();
-  const chances = gallows.getMissingParts();
+  const chances = game.gallows.getMissingParts();
 
   return {
-    alphabetLetters: alphabet.letters,
-    attemptsCount,
+    alphabetLetters: game.alphabet.letters,
     chances,
-    currentLevel,
-    gallowParts: new Array(attemptsCount).fill(0).map((el, index) => index >= chances),
     gameState,
-    levelCount,
-    phraseLetters: phrase.letters,
-    timeSpent: timer.getTimeSpent(),
-    word: phrase.word
+    letters: game.phrase.letters,
+    word: game.phrase.word,
+    timeSpent: game.timer.getTimeSpent()
   };
 };

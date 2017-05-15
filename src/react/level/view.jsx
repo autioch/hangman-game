@@ -1,14 +1,16 @@
 const { h } = require('preact');
-const GallowsView = require('./gallows/view');
+const PersonView = require('./person/view');
+const StructureView = require('./structure/view');
 const PhraseView = require('./phrase/view');
 
 require('./styles.scss');
 
-module.exports = function LevelView({ letters, parts }) {
+module.exports = function LevelView({ letters, chances, attemptsCount }) {
   return (
     <div className="m-level">
+      <StructureView />
+      <PersonView chances={chances} attemptsCount={attemptsCount} />
       <PhraseView letters={letters}/>
-      <GallowsView parts={parts} />
     </div>
   );
 };

@@ -55,21 +55,22 @@ module.exports = class AppView extends Component {
   }
 
   render() {
-    const { currentLevel, gameState, started, chances, attemptsCount, levelCount, word, timeSpent, phraseLetters, alphabetLetters, gallowParts } = this.state;
+    const { alphabetLetters, chances, gameState, letters, word, timeSpent, started } = this.state;
+    const { levelCount, gameFinished, levelFinished, attemptsCount, gameWon, currentLevel } = gameState;
     let messageView = '';
 
     if (!started) {
       messageView = <LandingView action={this.startGame} levelCount={levelCount} attemptsCount={attemptsCount}/>;
-    } else if (gameState.gameFinished) {
-      messageView = <GameSummaryView action={this.restartGame} phrase={word} gameWon={gameState.gameWon} timeSpent={timeSpent} />;
-    } else if (gameState.levelFinished) {
-      messageView = <LevelSummaryView action={this.nextLevel} phrase={word} />;
+    } else if (gameFinished) {
+      messageView = <GameSummaryView action={this.restartGame} word={word} gameWon={gameWon} timeSpent={timeSpent} />;
+    } else if (levelFinished) {
+      messageView = <LevelSummaryView action={this.nextLevel} word={word} />;
     }
 
     return (
       <div className="m-app">
         <TopbarView currentLevel={currentLevel} chances={chances} gameTimer={this.game && this.game.timer}/>
-        <LevelView letters={phraseLetters} parts={gallowParts} />
+        <LevelView letters={letters} chances={chances} attemptsCount={attemptsCount}/>
         <AlphabetView letters={alphabetLetters} action={this.chooseLetter}/>
         {messageView}
       </div>

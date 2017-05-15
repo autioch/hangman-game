@@ -33,7 +33,10 @@ module.exports = class HangmanGame {
       levelWon,
       levelLost,
       levelFinished: levelLost || levelWon,
-      nextLevelAvailable
+      nextLevelAvailable,
+      currentLevel: this.currentLevel,
+      levelCount: this.levelCount,
+      attemptsCount: this.attemptsCount
     };
   }
 
