@@ -10,6 +10,7 @@ A classical game.
 4. Run console command in the folder of the repository: `npm install`.
 
 ## Playing in the console
+
 1. Open console in the folder of the repository.
 2. Run command `node index`.
 3. The game will continuously ask for a letter to pick.
@@ -19,4 +20,10 @@ A classical game.
 
 ## Playing in the browser
 
-1. _This feature is not yet available_
+1. The game is available at [autioch.github.io/hangman-game](https://autioch.github.io/hangman-game/) .
+
+## Building own browser version
+
+1. Download or clone the repository.
+2. Run console command in the folder of the repository: `npm install`.
+3. Run console command `npm run react:build`.

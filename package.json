@@ -6,11 +6,18 @@
   "engines": {
     "node": ">=6.0.0"
   },
+  "bugs": {
+    "url": "https://github.com/autioch/hangman-game/issues"
+  },
   "scripts": {
     "test": "mocha --reporter=list src/**/*.spec.js",
     "test:watch": "mocha --reporter=min --watch src/**/*.spec.js & exit 0",
     "react:watch": "webpack --config tools/react.webpack.config.js --hide-modules --watch",
     "react:build": "webpack --config tools/react.webpack.config.js --hide-modules -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/autioch/hangman-game.git"
   },
   "keywords": [
     "hangman",

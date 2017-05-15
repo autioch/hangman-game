@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  - mobile first web application built using preact.
  - configuration files: `.htaccess`, `sass-lint.yml`, `react.webpack.config`.
  - micro server for development of web app.
- - `getState` of the game now returns extra data.
  - `reset` method for `Dictionary` that allows to reset drawn phrases.
  - `reset` method for `HangmanGame` that allows restart from level 1.
  - `getCurrentTime` for `Timer` that return current time in the same format as `getTimeSpent`.
@@ -18,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
  - phrases extracted from config.json into answers.json.
  - cli welcome message updated.
+ - `getState` of the `HangmanGame` now returns extra data.
 
 ### Removed
  - buildConfig util. Separation of actual config and answers made the tool pointless.
