@@ -22,9 +22,15 @@ function windowFetch(url) {
   return window.fetch(url).then((response) => response.json());
 }
 
+function isFetchAvailable() {
+  const isWindow =new Function("try {return this===window;}catch(e){ return false;}")();
+
+  return isWindow && window.fetch && typeof window.fetch === 'function';
+}
+
 /**
  * Fetches and parsed Json from given url. Window.fetch is not supported in some browsers.
  * @param  {String} url Address to query for data.
  * @return {Promise}    Promise resolving to parsed data recieved in the request.
  */
-module.exports = window.fetch && typeof window.fetch === 'function' ? windowFetch : fetchPolyfill;
+module.exports = isFetchAvailable() ? windowFetch : fetchPolyfill;
