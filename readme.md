@@ -21,6 +21,7 @@ A classical game.
 ## Playing in the browser
 
 1. The game is available at [autioch.github.io/hangman-game](https://autioch.github.io/hangman-game/) .
+2. Game was tested mainly on mobile resolutions. Desktop version is in progress.
 
 ## Building own browser version
 
