@@ -1,0 +1,13 @@
+.m-gallows {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  align-self: stretch;
+  z-index: -1;
+}
+
+.m-gallows__structure {
+  height: 100%;
+  position: absolute;
+  right: 0;
+}

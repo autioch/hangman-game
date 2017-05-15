@@ -3,9 +3,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  flex: 2 1 auto;
-
-  @media (orientation: portrait) {
-    flex: 0 0 auto;
-  }
+  width: 80%;
+  flex: 0 0 auto;
 }

@@ -1,0 +1,19 @@
+.m-person {
+  height: 100%;
+  position: absolute;
+  left: 2vw;
+}
+
+.m-person__part {
+  fill: #ddd;
+
+  &.is-complete {
+    fill: #666;
+  }
+}
+
+.m-person__rope {
+  fill:#999;
+  stroke:#999;
+  stroke-width:0.5;
+}

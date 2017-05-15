@@ -1,11 +1,10 @@
 /* eslint max-len: 0 */
 const { h, Component } = require('preact');
 const { fetchJson } = require('utils');
-const { GameSummaryView, LevelSummaryView, LandingView } = require('../message');
 const AlphabetView = require('../alphabet/view');
-const GallowsView = require('../gallows/view');
-const PhraseView = require('../phrase/view');
-const TopbarViewView = require('../topbar/view');
+const TopbarView = require('../topbar/view');
+const LevelView = require('../level/view');
+const { GameSummaryView, LevelSummaryView, LandingView } = require('../message');
 const getInitialState = require('./getInitialState');
 const getGameState = require('./getGameState');
 const setupGame = require('./setupGame');
@@ -26,8 +25,6 @@ module.exports = class AppView extends Component {
       this.syncStateToGame();
     });
   }
-
-  /* Event handlers */
 
   startGame() {
     this.setState({
@@ -59,25 +56,22 @@ module.exports = class AppView extends Component {
 
   render() {
     const { currentLevel, gameState, started, chances, attemptsCount, levelCount, word, timeSpent, phraseLetters, alphabetLetters, gallowParts } = this.state;
-    let summaryView = '';
+    let messageView = '';
 
     if (!started) {
-      summaryView = <LandingView action={this.startGame} levelCount={levelCount} attemptsCount={attemptsCount}/>;
+      messageView = <LandingView action={this.startGame} levelCount={levelCount} attemptsCount={attemptsCount}/>;
     } else if (gameState.gameFinished) {
-      summaryView = <GameSummaryView action={this.restartGame} phrase={word} gameWon={gameState.gameWon} timeSpent={timeSpent} />;
+      messageView = <GameSummaryView action={this.restartGame} phrase={word} gameWon={gameState.gameWon} timeSpent={timeSpent} />;
     } else if (gameState.levelFinished) {
-      summaryView = <LevelSummaryView action={this.nextLevel} phrase={word} />;
+      messageView = <LevelSummaryView action={this.nextLevel} phrase={word} />;
     }
 
     return (
       <div className="m-app">
-        <TopbarViewView currentLevel={currentLevel} chances={chances} gameTimer={this.game && this.game.timer}/>
-        <div className="m-level">
-          <PhraseView letters={phraseLetters}/>
-          <GallowsView parts={gallowParts} />
-        </div>
+        <TopbarView currentLevel={currentLevel} chances={chances} gameTimer={this.game && this.game.timer}/>
+        <LevelView letters={phraseLetters} parts={gallowParts} />
         <AlphabetView letters={alphabetLetters} action={this.chooseLetter}/>
-        {summaryView}
+        {messageView}
       </div>
     );
   }

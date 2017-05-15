@@ -1,22 +1,20 @@
-@import 'react/theme';
-
 .c-message__wrapper {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: $overlay__background;
+  background: rgba(255, 255, 255, .5);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .c-message {
-  border: $box__border;
-  background: $box__background;
+  border: solid .25em #421;
+  background: lighten(#421, 20%);
   border-radius: .25em;
-  color: $box__font;
+  color: #fff;
 }
 
 .c-message__header {
@@ -38,18 +36,18 @@
 }
 
 .c-message__button {
-  background: $buttton__background;
-  color: $box__font;
+  background: #421;
+  color: #fff;
   border-radius: .15em;
   display: inline-block;
   padding: .35em 1em;
   outline: none;
   cursor: pointer;
-  border: solid 1px $buttton__background;
+  border: solid 1px #421;
 
   @media (hover: hover) {
     &:hover {
-      background-color: $buttton__background--hover;
+      background-color: lighten(#421, 15%);
     }
   }
 }

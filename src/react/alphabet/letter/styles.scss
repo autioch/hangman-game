@@ -1,10 +1,14 @@
-@import 'react/theme';
-
 .m-alphabet-letter {
-  @include c-square(2em);
-  border: $box__border;
-  background: $box__background;
-  color: $box__font;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 1.1em;
+  border: solid .25em #06f;
+  background: #09f;
+  color: #fff;
   text-transform: uppercase;
   margin: .25em;
   transition: border-color 150ms, background-color 150ms, color 150ms;
@@ -14,15 +18,15 @@
 
     @media (hover: hover) {
       &:hover {
-        background: $box__background--hover;
-        border: $box__border--hover;
+        border: solid .25em #07f;
+        background: #0bf;
       }
     }
   }
 
   &.is-picked {
-    border: $box__border--disabled;
-    background-color: $box__background--disabled;
-    color: $box__font--disabled;
+    border: solid .25em #ccc;
+    background-color: lighten(#ccc, 10%);
+    color: #888;
   }
 }

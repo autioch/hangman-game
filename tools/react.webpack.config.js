@@ -91,12 +91,12 @@ const webpackConfig = {
 if (process.argv.indexOf('--watch') > -1) {
   require('./server')(buildFolder, 8082);
 
-  // const LiveReloadPlugin = require('webpack-livereload-plugin');
-  //
-  // webpackConfig.plugins.push(new LiveReloadPlugin({
-  //   appendScriptTag: true,
-  //   ignore: /.(js|jsx|json|config|ico|woff)$/
-  // }));
+  const LiveReloadPlugin = require('webpack-livereload-plugin');
+
+  webpackConfig.plugins.push(new LiveReloadPlugin({
+    appendScriptTag: true,
+    ignore: /.(js|jsx|json|config|ico|woff)$/
+  }));
 }
 
 if (isProduction) {
