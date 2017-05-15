@@ -1,5 +1,6 @@
 const HangmanGame = require('../core/game');
-const { words, letters, levelCount, attemptsCount } = require('../config');
+const { letters, levelCount, attemptsCount } = require('../config');
+const words = require('../answers');
 const { renderWelcome } = require('./view');
 const roundLoop = require('./roundLoop');
 

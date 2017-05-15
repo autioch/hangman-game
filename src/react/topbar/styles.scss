@@ -1,0 +1,15 @@
+.m-topbar {
+  border-bottom: solid .25em #421;
+  background: lighten(#421, 20%);
+  color: #fff;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+  flex: 0 0 auto;
+
+  @media (min-width: 1024px) {
+    border-left: solid .25em #421;
+    border-right: solid .25em #421;
+  }
+}

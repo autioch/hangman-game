@@ -2,6 +2,20 @@ const MILISECOND = 1000;
 const MINUTE = 60;
 const HOUR = 60;
 
+function timeToObject(miliseconds) {
+  const totalSeconds = Math.floor(miliseconds / MILISECOND);
+  const seconds = totalSeconds % MINUTE;
+  const totalMinutes = (totalSeconds - seconds) / MINUTE;
+  const minutes = totalMinutes % HOUR;
+  const hours = (totalMinutes - minutes) / HOUR;
+
+  return {
+    hours,
+    minutes,
+    seconds
+  };
+}
+
 module.exports = class Timer {
   constructor() {
     this.total = 0;
@@ -30,17 +44,17 @@ module.exports = class Timer {
     this.total = 0;
   }
 
-  getTimeSpent() {
-    const totalSeconds = Math.floor(this.total / MILISECOND);
-    const seconds = totalSeconds % MINUTE;
-    const totalMinutes = (totalSeconds - seconds) / MINUTE;
-    const minutes = totalMinutes % HOUR;
-    const hours = (totalMinutes - minutes) / HOUR;
+  getCurrentTime() {
+    let current = 0;
 
-    return {
-      hours,
-      minutes,
-      seconds
-    };
+    if (this.isRunning) {
+      current = Date.now() - this.startTime;
+    }
+
+    return timeToObject(this.total + current);
+  }
+
+  getTimeSpent() {
+    return timeToObject(this.total);
   }
 };

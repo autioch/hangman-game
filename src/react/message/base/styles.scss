@@ -1,0 +1,53 @@
+.c-message__wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-message {
+  border: solid .25em #421;
+  background: lighten(#421, 20%);
+  border-radius: .25em;
+  color: #fff;
+}
+
+.c-message__header {
+  margin: 1em;
+  text-align: center;
+}
+
+.c-message__content {
+  margin: 2em;
+}
+
+.c-message__paragraph {
+  margin: .5em 0;
+}
+
+.c-message__action {
+  margin: 1em;
+  text-align: center;
+}
+
+.c-message__button {
+  background: #421;
+  color: #fff;
+  border-radius: .15em;
+  display: inline-block;
+  padding: .35em 1em;
+  outline: none;
+  cursor: pointer;
+  border: solid 1px #421;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: lighten(#421, 15%);
+    }
+  }
+}

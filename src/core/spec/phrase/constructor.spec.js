@@ -21,10 +21,4 @@ describe('Creating Phrase', () => {
       });
     });
   });
-
-  // describe(`without 5 parts`, () => {
-  //   it('should create incomplete gallows', () => {
-  //     expect(new Phrase(exampleCount).isComplete()).to.equal(false);
-  //   });
-  // });
 });

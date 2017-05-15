@@ -19,4 +19,10 @@ module.exports = class Dictionary {
 
     return drawnWord.label;
   }
+
+  reset() {
+    this.words.forEach((word) => {
+      word.isDrawn = false;
+    });
+  }
 };

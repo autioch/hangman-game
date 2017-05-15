@@ -33,7 +33,10 @@ module.exports = class HangmanGame {
       levelWon,
       levelLost,
       levelFinished: levelLost || levelWon,
-      nextLevelAvailable
+      nextLevelAvailable,
+      currentLevel: this.currentLevel,
+      levelCount: this.levelCount,
+      attemptsCount: this.attemptsCount
     };
   }
 
@@ -63,5 +66,14 @@ module.exports = class HangmanGame {
     }
 
     return containsLetter;
+  }
+
+  reset() {
+    this.alphabet.reset();
+    this.dictionary.reset();
+    this.gallows.reset();
+    this.timer.reset();
+    this.phrase.setWord('');
+    this.currentLevel = 0;
   }
 };

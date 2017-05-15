@@ -1,0 +1,32 @@
+.m-alphabet-letter {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 1.1em;
+  border: solid .25em #06f;
+  background: #09f;
+  color: #fff;
+  text-transform: uppercase;
+  margin: .25em;
+  transition: border-color 150ms, background-color 150ms, color 150ms;
+
+  &:not(.is-picked) {
+    cursor: pointer;
+
+    @media (hover: hover) {
+      &:hover {
+        border: solid .25em #07f;
+        background: #0bf;
+      }
+    }
+  }
+
+  &.is-picked {
+    border: solid .25em #ccc;
+    background-color: lighten(#ccc, 10%);
+    color: #888;
+  }
+}
